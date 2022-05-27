@@ -125,11 +125,11 @@ set $base0F #fcc09e
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "Browsers"
 set $ws2 "Terminals"
-set $ws3 "VS Code"
+set $ws3 "VSCode"
 set $ws4 "Thunar"
 set $ws5 "Compass"
 set $ws6 "Postman"
-set $ws7 "7"
+set $ws7 "Music"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -141,19 +141,19 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace number $ws7
+bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
@@ -228,8 +228,13 @@ bindsym $mod+x exec i3lock --color "$base01"
 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# increase screen brightness
+#bindsym XF86MonBrightnessUp exec "xbacklight -inc 20" 
+# decrease screen brightness
+#bindsym XF86MonBrightnessDown exec "xbacklight -dec 20"
+
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -244,17 +249,20 @@ bindsym XF86AudioPrev exec playerctl previous
 #exec_always code
 #exec_always google-chrome
 #exec_always mongodb-compass
-#exec_always i3-sensible-terminal
+exec_always brave-browser
+exec_always kitty
 #exec_always thunar
 #exec_always /home/kadel/Public/Postman/app/postman
 
 # force open window on workspace
 assign [class="Code"] $ws3
+assign [class="Brave-browser"] $ws1
 assign [class="Google-chrome"] $ws1
 assign [class="kitty"] $ws2
 assign [class="Thunar"] $ws4
 assign [class="MongoDB Compass"] $ws5
 assign [class="Postman"] $ws6
+assign [class="Spotify"] $ws7
 
 bindsym $mod+shift+v exec code
 bindsym $mod+shift+b exec brave-browser
@@ -262,6 +270,7 @@ bindsym $mod+shift+g exec google-chrome
 bindsym $mod+shift+t exec Thunar
 bindsym $mod+shift+m exec mongodb-compass
 bindsym $mod+shift+p exec /home/kadel/Public/Postman/app/postman
+bindsym $mod+shift+s exec spotify
 
 # for wallpaper
 exec_always feh --bg-scale /home/kadel/Pictures/shadow.jpg
